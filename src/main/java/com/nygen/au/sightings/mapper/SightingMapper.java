@@ -28,6 +28,7 @@ public class SightingMapper {
     }
 
     public SightingResponse toResponse(Sighting sighting) {
-        return new SightingResponse(sighting.getSpecies(),sighting.getRegion(),sighting.getSightedOn(),sighting.getStatus(),sighting.getNotes());
+        return new SightingResponse(sighting.getId(), sighting.getSpecies(),sighting.getRegion(),sighting.getSightedOn(),
+                sighting.getStatus(),sighting.getNotes());
     }
 }

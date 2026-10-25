@@ -37,8 +37,8 @@ public class SightingService {
 
     }
 
-    public ResponseEntity addSighting(SightingRequest sightingRequest) {
-        sightingRepository.save(sightingMapper.toEntity(sightingRequest));
-        return new ResponseEntity(HttpStatus.CREATED);
+    public SightingResponse addSighting(SightingRequest sightingRequest) {
+        Sighting sighting = sightingRepository.save(sightingMapper.toEntity(sightingRequest));
+        return sightingMapper.toResponse(sighting);
     }
 }
