@@ -6,6 +6,7 @@ import com.nygen.au.sightings.service.SightingService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
@@ -28,7 +29,10 @@ public class SightingController {
     @PostMapping
     public ResponseEntity<SightingResponse> createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
         SightingResponse sightingResponse = sightingService.addSighting(sightingRequest);
-        URI uri = URI.create("/api/sightings" + sightingResponse.id());
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(sightingResponse.id())
+                .toUri();
         return ResponseEntity.created(uri).body(sightingResponse);
     }
 }
