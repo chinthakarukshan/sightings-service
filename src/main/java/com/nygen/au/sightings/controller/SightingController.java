@@ -26,6 +26,11 @@ public class SightingController {
         return sightingService.findAll(region);
     }
 
+    @GetMapping("/{id}")
+    public SightingResponse getSighting(@PathVariable Long id) {
+        return sightingService.findById(id);
+    }
+
     @PostMapping
     public ResponseEntity<SightingResponse> createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
         SightingResponse sightingResponse = sightingService.addSighting(sightingRequest);
