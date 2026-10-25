@@ -29,7 +29,7 @@ public class SightingController {
     }
 
     @PostMapping
-    public ResponseEntity createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
+    public ResponseEntity<SightingResponse> createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
         SightingResponse sightingResponse = sightingService.addSighting(sightingRequest);
         URI uri = URI.create("/api/sightings" + sightingResponse.id());
         return ResponseEntity.created(uri).body(sightingResponse);
