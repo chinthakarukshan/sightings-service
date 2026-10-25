@@ -21,7 +21,7 @@ public class SightingController {
     }
 
     @GetMapping
-    public List<SightingResponse> getSightingbyRegion(@RequestParam(required = false) String region) {
+    public List<SightingResponse> getSightings(@RequestParam(required = false) String region) {
         return sightingService.findAll(region);
     }
 
