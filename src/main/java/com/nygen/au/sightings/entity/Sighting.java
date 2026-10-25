@@ -12,15 +12,19 @@ public class Sighting {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String species;
 
+    @Column(nullable = false)
     private String region;
 
+    @Column(nullable = false)
     private LocalDate sightedOn;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(length = 500)
     private String notes;
 
 
