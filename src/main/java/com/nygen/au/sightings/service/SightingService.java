@@ -45,4 +45,9 @@ public class SightingService {
         return sightingMapper.toResponse(sighting);
     }
 
+    public void deleteSighting(Long id) {
+        Sighting sighting = sightingRepository.findById(id).orElseThrow(() -> new SightingNotFoundException("Sighting not found for " + id));
+        sightingRepository.delete(sighting);
+    }
+
 }

@@ -46,4 +46,10 @@ public class SightingController {
                 .toUri();
         return ResponseEntity.created(uri).body(sightingResponse);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteSighting(@PathVariable Long id) {
+        sightingService.deleteSighting(id);
+        return ResponseEntity.noContent().build();
+    }
 }
