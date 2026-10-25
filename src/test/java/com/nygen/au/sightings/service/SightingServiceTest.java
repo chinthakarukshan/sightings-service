@@ -46,5 +46,6 @@ public class SightingServiceTest {
         verify(sightingRepository).save(sightingArgumentCaptor.capture());
         Sighting sighting = sightingArgumentCaptor.getValue();
         assertEquals(Status.REPORTED,sighting.getStatus());
+        assertEquals("Elephant", sighting.getSpecies());
     }
 }
