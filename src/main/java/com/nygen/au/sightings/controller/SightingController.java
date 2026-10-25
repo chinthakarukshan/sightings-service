@@ -1,13 +1,14 @@
 package com.nygen.au.sightings.controller;
 
 import com.nygen.au.sightings.common.exception.SightingNotFoundException;
+import com.nygen.au.sightings.dto.SightingRequest;
+import com.nygen.au.sightings.dto.SightingResponse;
 import com.nygen.au.sightings.entity.Sighting;
 import com.nygen.au.sightings.service.SightingService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,11 +16,19 @@ import java.util.List;
 @RequestMapping("/api/sightings")
 public class SightingController {
 
-    @Autowired
-    private SightingService sightingService;
+    private final SightingService sightingService;
+
+    public SightingController(SightingService sightingService) {
+        this.sightingService = sightingService;
+    }
 
     @GetMapping
-    public List<Sighting> getSightingbyRegion(@RequestParam(required = false) String region) {
+    public List<SightingResponse> getSightingbyRegion(@RequestParam(required = false) String region) {
         return sightingService.findAll(region);
+    }
+
+    @PostMapping
+    public ResponseEntity createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
+        return sightingService.addSighting(sightingRequest);
     }
 }
