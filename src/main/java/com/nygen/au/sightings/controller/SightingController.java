@@ -31,6 +31,12 @@ public class SightingController {
         return sightingService.findById(id);
     }
 
+    @PutMapping("/{id}")
+    public SightingResponse updateSighting(@PathVariable Long id,
+                                           @Valid @RequestBody SightingRequest request) {
+        return sightingService.updateSighting(id,request);
+    }
+
     @PostMapping
     public ResponseEntity<SightingResponse> createSighting(@Valid @RequestBody SightingRequest sightingRequest) {
         SightingResponse sightingResponse = sightingService.addSighting(sightingRequest);

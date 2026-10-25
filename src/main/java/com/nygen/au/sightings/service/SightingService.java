@@ -38,4 +38,11 @@ public class SightingService {
         return sightingMapper.toResponse(sighting);
     }
 
+    public SightingResponse updateSighting(Long id, SightingRequest sightingRequest) {
+        Sighting sighting = sightingRepository.findById(id).orElseThrow(() -> new SightingNotFoundException("Sighting not found for " + id));
+        sightingMapper.updateEntity(sighting, sightingRequest);
+        sightingRepository.save(sighting);
+        return sightingMapper.toResponse(sighting);
+    }
+
 }
